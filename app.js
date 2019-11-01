@@ -1,10 +1,10 @@
 console.log("test");
-/*
+
 //Create prompt window
 let userChoice = window.prompt("What is your choice?")
 //Convert to lowercase
 let lowerCaseUserChoice = userChoice.toLowerCase();
-*/
+
 /*
 let randomNumber = Math.random();
 console.log(randomNumber)
@@ -49,4 +49,26 @@ let playRound = (playerSelection, computerSelection) => {
         return "you lose."
     }
 }
+console.log(`player choice: ${lowerCaseUserChoice} \nComputers choice: ${computerChoice()} `)
+console.log(playRound(lowerCaseUserChoice, computerChoice()));
+
+let bestOf5 = () => {
+    let total = []
+
+    while (true) {
+        total.push(playRound(lowerCaseUserChoice,computerChoice()))
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
 
