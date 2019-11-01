@@ -56,8 +56,8 @@ let bestOf5 = () => {
     let total = []
 
     while (true) {
-        total.push(playRound(lowerCaseUserChoice,computerChoice()))
-        
+        //total.push(playRound(lowerCaseUserChoice,computerChoice()))
+         
     }
     
 }
