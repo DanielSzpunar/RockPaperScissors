@@ -39,9 +39,18 @@ let playRound = (playerSelection, computerSelection) => {
     }
 }
 let displayStats = (win, lost, tie) => {
+console.log("wins: " + win);
+console.log("losses: " + lost);
+console.log("draws: " + tie);
 
+    if (win > lost) {
+    return "You won!";
+    } else if (lost > win) {
+        return"You lost!";
+    } else {
+        return "Draw!";
+    }
 }
-
 let bestOf5 = () => {
     var round = 1;
     var userScore = 0;
@@ -64,8 +73,9 @@ let bestOf5 = () => {
         console.log("Winner of game " + round + " is " + game);
         round++;
     }
+    console.log(displayStats(userScore, computerScore, draw))
 }
-
+bestOf5();
 
 
 
