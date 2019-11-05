@@ -1,7 +1,7 @@
-console.log("test");
-var wins = 0;
-var losses = 0;
-var ties = 0;
+let totalGamesPlayed = 0;
+let wins = 0;
+let losses = 0;
+let ties = 0;
 
 let userChoiceFunc = () => {
     let userChoiceString = window.prompt("What is your choice?")
@@ -90,17 +90,35 @@ document.getElementById("output").innerHTML = `
 `;
 }
 
+function winPercentage(totalGamesPlayed, wins) {
+    let winPercentage = (100 * wins) / totalGamesPlayed;
+    return winPercentage.toFixed(2) + "%";
+
+}
+
 function updateScore(gameResult) {
     if (gameResult === "you win") {
         wins++;
+        totalGamesPlayed++;
         document.getElementById("wins").innerHTML = wins;
+        document.getElementById("totalGamesPlayed").innerHTML = totalGamesPlayed;
     } else if  (gameResult === "you lose") {
         losses++;
+        totalGamesPlayed++;
         document.getElementById("losses").innerHTML = losses;
+        document.getElementById("totalGamesPlayed").innerHTML = totalGamesPlayed;
     } else if (gameResult === "tie"){
         ties++;
+        totalGamesPlayed++;
         document.getElementById("draws").innerHTML = ties;
+        document.getElementById("totalGamesPlayed").innerHTML = totalGamesPlayed;
     }
+    document.getElementById("winPercentage").innerHTML = winPercentage(totalGamesPlayed, wins);
+    winPercentage(totalGamesPlayed, wins);
+}
+
+function resetTextInput() {
+    document.getElementById("userChoiceInput").value = "";
 }
 
 function playGamev2() {
@@ -109,15 +127,14 @@ function playGamev2() {
     let game = playRound(userChoice, computerChoice);
 
     let template = `
-    <p>Your Choice: ${userChoice}<br/>
-    Computer's Choice: ${computerChoice}<br/>
-    ${game.charAt(0).toUpperCase() + game.slice(1)}<br/>
+    <p>${userChoice.charAt(0).toUpperCase() + userChoice.slice(1)} vs. ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} = ${game.charAt(0).toUpperCase() + game.slice(1)}
     </p>
     `
     let outputTemplate = document.getElementById("output");
     outputTemplate.insertAdjacentHTML("beforeend", template);
 
     updateScore(game);
+    resetTextInput();
 }
 
 
