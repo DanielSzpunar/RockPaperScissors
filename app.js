@@ -1,4 +1,7 @@
 console.log("test");
+var wins = 0;
+var losses = 0;
+var ties = 0;
 
 let userChoiceFunc = () => {
     let userChoiceString = window.prompt("What is your choice?")
@@ -75,10 +78,47 @@ let bestOf5 = () => {
     }
     console.log(displayStats(userScore, computerScore, draw))
 }
-bestOf5();
 
+function playGame() {
+let userChoice = document.getElementById("userChoiceInput").value.toLowerCase();
+let computerChoice = computerChoiceFunc();
+let game = playRound(userChoice, computerChoice);
+document.getElementById("output").innerHTML = `
+<p>Your Choice: ${userChoice}</p>
+<p>Computer's Choice: ${computerChoice}</p>
+<p> ${game.charAt(0).toUpperCase() + game.slice(1)}</p>
+`;
+}
 
+function updateScore(gameResult) {
+    if (gameResult === "you win") {
+        wins++;
+        document.getElementById("wins").innerHTML = wins;
+    } else if  (gameResult === "you lose") {
+        losses++;
+        document.getElementById("losses").innerHTML = losses;
+    } else if (gameResult === "tie"){
+        ties++;
+        document.getElementById("draws").innerHTML = ties;
+    }
+}
 
+function playGamev2() {
+    let userChoice = document.getElementById("userChoiceInput").value.toLowerCase();
+    let computerChoice = computerChoiceFunc();
+    let game = playRound(userChoice, computerChoice);
+
+    let template = `
+    <p>Your Choice: ${userChoice}<br/>
+    Computer's Choice: ${computerChoice}<br/>
+    ${game.charAt(0).toUpperCase() + game.slice(1)}<br/>
+    </p>
+    `
+    let outputTemplate = document.getElementById("output");
+    outputTemplate.insertAdjacentHTML("beforeend", template);
+
+    updateScore(game);
+}
 
 
 
